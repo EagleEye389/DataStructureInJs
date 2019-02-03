@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <style>
+          #first ,#second {
+              border:1px solid gray;
+              
+              height: 200px;
+              width:40%;              
+              min-height: 100%;
+              min-width: 200px;
+              background-color: red;
+              display: inline-block;
+
+          }
+         
+          #first img{
+              width: 100%;
+              height: 100%;
+              margin: 0px;
+              padding:0px;
+            
+          }
+          #second img{
+              width: 100%;
+              height: 100%;
+              margin: 0px;
+              padding:0px;
+            
+          }
+          #container{
+              width: 80%;
+              min-height: 400px;
+              height: auto;
+    
+              border: 1px solid gray;
+              margin: 0 auto;
+          }
+      </style>
+      <script>
+          function check(event){
+              
+               event.dataTransfer.setData("key",event.target.id);
+          }
+         function donothing(event){
+            event.preventDefault();
+         }
+         function actualWork(event){
+          //  event.preventDefault();
+            var t = event.dataTransfer.getData("key");
+            console.log(t)
+            event.target.appendChild(document.getElementById(t));
+         }
+      </script>
+    </head>
+    <body>
+        <div id="container">
+            <div id="first">
+                <img src="first.jpg" id="dragging"  draggable="true" ondragstart="check(event)" /> 
+            </div>
+            <div id="second" ondragover="donothing(event)" ondrop="actualWork(event)"> </div>
+        </div>
+    </body>
+</html>
